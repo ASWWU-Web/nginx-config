@@ -1,0 +1,136 @@
+server {
+	listen 80;
+	#listen 443;
+	#server_name	*.wallawalla.edu;
+	return 301 https://aswwu.com$request_uri;
+}
+
+server {
+	#listen 80 default_server;
+	listen 443 ssl;
+
+	ssl on;
+	#ssl_certificate		/etc/nginx/ssl/gd_bundle-g2-g1.crt;
+	ssl_certificate         /etc/nginx/ssl/rapidssl_certificate.crt;
+	ssl_certificate_key	/etc/nginx/ssl/rapidssl_server.key;
+
+	root /var/www/html;
+	index index.php index.html;
+	server_name _;
+
+	location / {
+		alias	/var/www/html/aswwu.com/live/;
+		#rewrite ^/(.*) /#/$1;
+		include	php.fast.conf;
+	}
+
+	location /dev {
+		alias	/var/www/html/aswwu.com/dev;
+		include	php.fast.conf;
+	}
+
+	location /server/ {
+		proxy_pass_header Server;
+		proxy_set_header Host $http_host;
+		proxy_redirect off;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Scheme $scheme;
+		proxy_pass http://python_backends/;
+		#alias	/data/php_server;
+		#include	php.fast.conf;
+	}
+
+	location /python_server/ {
+		proxy_pass_header Server;
+		proxy_set_header Host $http_host;
+		proxy_redirect off;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Scheme $scheme;
+		proxy_pass	http://python_backends/;
+	}
+
+	location /php_server {
+		alias /data/php_server;
+		include	php.fast.conf;
+	}
+
+	location /auth {
+		#alias	/var/www/html/auth;
+		rewrite ^ /php_server/?cmd=login;
+		#include	php.fast.conf;
+	}
+
+        location /fonts {
+                alias   /var/www/html/fonts;
+                include php.fast.conf;
+        }
+
+        location /forms {
+                alias   /var/www/html/forms;
+                include php.fast.conf;
+        }
+
+	location /media/img {
+		rewrite ^/media/img-xs/([A-Za-z0-9/_\s%-\.]+) /media/dynamicImages.php?max_width=50&imgfile=$1;
+		rewrite ^/media/img-sm/([A-Za-z0-9/_\s%-\.]+) /media/dynamicImages.php?max_width=400&imgfile=$1;
+		rewrite ^/media/img-md/([A-Za-z0-9/_\s%-\.]+) /media/dynamicImages.php?max_width=1024&imgfile=$1;
+		rewrite ^/media/img-lg/([A-Za-z0-9/_\s%-\.]+) /media/dynamicImages.php?max_width=1920&imgfile=$1;
+	}
+
+	location /media {
+                alias   /data/media;
+                include php.fast.conf;
+        }
+
+
+        location /music {
+                alias   /var/www/html/music;
+                include php.fast.conf;
+        }
+
+        location /store {
+                alias   /var/www/html/store;
+                include php.fast.conf;
+        }
+
+        location /tobuildahome {
+                alias   /var/www/html/tobuildahome;
+                include php.fast.conf;
+        }
+
+        location /videos {
+                alias   /var/www/html/videos;
+                include php.fast.conf;
+        }
+
+	location /c_archives {
+                alias   /data/collegian_archives/web;
+		include php.fast.conf;
+        }
+
+	location /collegian {
+		return	301	/#/collegian;
+	}
+
+	location ~* ^/cosdllegian.* {
+		proxy_set_header HOST $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+		proxy_pass https://go.aswwu.com;
+	}
+
+	location /prayitforward {
+		alias /var/www/html/prayitforward;
+	}
+
+	location /uploads {
+		alias	/data/uploads;
+	}
+
+	location /saml {
+		alias /var/simplesamlphp/www;
+		include php.fast.conf;
+	}
+
+}
