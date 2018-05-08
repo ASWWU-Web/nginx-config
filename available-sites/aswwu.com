@@ -18,7 +18,10 @@ server {
 	server_name aswwu.com www.aswwu.com collegian.aswwu.com;
 
 	location / {
-		alias	/var/www/html/aswwu.com/live/;
+		#alias	/var/www/html/aswwu.com/live/;
+		#alias /var/www/html/homepage;
+		root /var/www/html/homepage;
+		try_files $uri $uri/ /index.html;
 		#rewrite ^/(.*) /#/$1;
 		#include	php.fast.conf;
 	}
