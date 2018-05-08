@@ -20,11 +20,12 @@ server {
 	location / {
 		alias	/var/www/html/aswwu.com/live/;
 		#rewrite ^/(.*) /#/$1;
-		include	php.fast.conf;
+		#include	php.fast.conf;
 	}
 
 	location /dev {
-		alias	/var/www/html/aswwu.com/dev;
+		alias	/var/www/html/dev;
+		try_files $uri $uri/ /dev/index.html;
 	}
 
 	location /staging {
