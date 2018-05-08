@@ -193,27 +193,27 @@ server {
 
 	location ~ ^/(treadshed|TreadShed) {
 		proxy_cache_valid 301 1d;
-		return 301 https://aswwu.com/#/departments/tread_shed;
+		return 302 https://aswwu.com/#/departments/tread_shed;
 	}
 
 	location /candidate {
-		return 301 https://aswwu.com/uploads/ASWWU/Executive%20Declaration%20of%20Candidacy%202018.docx;
+		return 302 https://aswwu.com/uploads/ASWWU/Executive%20Declaration%20of%20Candidacy%202018.docx;
 	}
 
 	location ~ ^/(theVoice|TheVoice) {
-		return 301 /thevoice;
+		return 302 /thevoice;
 	}
 
 	location ~ ^/(botb|BOTB) {
-		return 301 https://wwuform.formstack.com/forms/botb_tickets;
+		return 302 https://wwuform.formstack.com/forms/botb_tickets;
 	}
 
 	location ~ ^/(escaperoom|EscapeRoom) {
-		return 301 https://docs.google.com/forms/d/e/1FAIpQLSdHZo2t2zFUSzN9TamiG9tSs-nztXlT4liwi-0ji44p8OaQxQ/viewform;
+		return 302 https://docs.google.com/forms/d/e/1FAIpQLSdHZo2t2zFUSzN9TamiG9tSs-nztXlT4liwi-0ji44p8OaQxQ/viewform;
 	}
 
 	location ~ ^/(fitness|Fitness) {
-		return 301 https://docs.google.com/forms/d/e/1FAIpQLScHGU9L3-LqOzk8IB9vHESEDVgYcfPH3s_f4t0gPqtvsK9PAQ/viewform;
+		return 302 https://docs.google.com/forms/d/e/1FAIpQLScHGU9L3-LqOzk8IB9vHESEDVgYcfPH3s_f4t0gPqtvsK9PAQ/viewform;
 	}
 
 	location /vote {
@@ -222,49 +222,49 @@ server {
 	}
 
 	location /thevoice/tickets {
-		proxy_cache_valid 301 1d; # This may change soon so we'll put this.
+		proxy_cache_valid 302 1d; # This may change soon so we'll put this.
 				return 301 https://wwuform.formstack.com/forms/the_voice_of_walla_walla;
 	}
 
 	location /botc/tickets {
-		return 301 https://wwuform.formstack.com/forms/aswwu_battle_of_the_comedians;
+		return 302 https://wwuform.formstack.com/forms/aswwu_battle_of_the_comedians;
 	}
 
 	location /JOBS {
 		proxy_cache_valid 301 7d; # This may change soon so we'll put this.
-		return 301 /jobs;
+		return 302 /jobs;
 	}
 
 	location /collegian {
-		return  301     /#/collegian;
+		return  302     /#/collegian;
 		}
 
 	location ~ ^/(banquet|Banquet|BANQUET) {
-		return 301 https://wwuform.formstack.com/forms/spring_banquet;
+		return 302 https://wwuform.formstack.com/forms/spring_banquet;
 	}
 
 	location /social {
-		proxy_cache_valid 301 1d;
-		return 301      /#/departments/social;
+		proxy_cache_valid 302 1d;
+		return 302      /#/departments/social;
 	}
 
 	location /globalservice {
-		proxy_cache_valid 301 1d; # This may change soon so we'll put this.
-		return 301 /#/departments/global_service/current_project;
+		proxy_cache_valid 302 1d; # This may change soon so we'll put this.
+		return 302 /#/departments/global_service/current_project;
 	}
 
 	location /photo {
-		proxy_cache_valid 301 1d;
-		return 301 https://aswwu.smugmug.com/browse;
+		proxy_cache_valid 302 1d;
+		return 302 https://aswwu.smugmug.com/browse;
 	}
 
 	location /video {
-		proxy_cache_valid 301 1d;
-		return 301 https://vimeo.com/aswwu;
+		proxy_cache_valid 302 1d;
+		return 302 https://vimeo.com/aswwu;
 	}
 	
 	location ~ ^/(sns|sas) {
-		return 301 /shaneandshane;
+		return 302 /shaneandshane;
 	}
 
 
