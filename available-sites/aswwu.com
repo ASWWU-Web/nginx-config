@@ -220,7 +220,6 @@ server {
 	}
 
 	location /vote {
-		proxy_cache_valid 301 1d;
 		return 302 https://docs.google.com/forms/d/e/1FAIpQLScMV3hxpewwZBWvz6O2nc0grWdTwU8ZgZoNB89IFyeodoJhpQ/viewform?usp=sf_link; 
 	}
 
@@ -239,21 +238,21 @@ server {
 	}
 
 	location /collegian {
-		return  302     /#/collegian;
-		}
+		return  301     /pages/collegian;
+	}
 
 	location ~ ^/(banquet|Banquet|BANQUET) {
 		return 302 https://wwuform.formstack.com/forms/spring_banquet;
 	}
 
 	location /social {
-		proxy_cache_valid 302 1d;
-		return 302      /#/departments/social;
+		proxy_cache_valid 301 1d;
+		return 301      /pages/social;
 	}
 
 	location /globalservice {
-		proxy_cache_valid 302 1d; # This may change soon so we'll put this.
-		return 302 /#/departments/global_service/current_project;
+		proxy_cache_valid 301 1d; # This may change soon so we'll put this.
+		return 301 /pages/global_service;
 	}
 
 	location /photo {
