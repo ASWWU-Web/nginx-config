@@ -30,10 +30,14 @@ server {
 		alias	/var/www/html/dev;
 		try_files $uri $uri/ /dev/index.html;
 	}
+	
+	location /1718 {
+		alias /var/www/html/aswwu.com/live;
+	}
 
 	location /staging {
-  	alias /var/www/html/aswwu.com/staging;
-  }
+	  	alias /var/www/html/aswwu.com/staging;
+  	}
 
 	location /server/ {
 		proxy_pass_header Server;
@@ -196,7 +200,7 @@ server {
 
 	location ~ ^/(treadshed|TreadShed) {
 		proxy_cache_valid 301 1d;
-		return 302 https://aswwu.com/#/departments/tread_shed;
+		return 302 https://aswwu.com/pages/treadshed;
 	}
 
 	location /candidate {
@@ -257,12 +261,12 @@ server {
 
 	location /photo {
 		proxy_cache_valid 302 1d;
-		return 302 https://aswwu.smugmug.com/browse;
+		return 302 /pages/photo;
 	}
 
 	location /video {
 		proxy_cache_valid 302 1d;
-		return 302 https://vimeo.com/aswwu;
+		return 302 /pages/video;
 	}
 	
 	location ~ ^/(sns|sas) {
