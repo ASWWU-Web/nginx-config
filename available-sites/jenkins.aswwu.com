@@ -25,9 +25,9 @@ server {
         proxy_pass              http://jenkins;
         # Required for new HTTP-based CLI
         proxy_http_version 1.1;
-        proxy_request_buffering off;
+        # proxy_request_buffering off;  # NEED TO UPGRADE NGINX FOR COMPATIBILITY
         proxy_buffering off; # Required for HTTP-based CLI to work over SSL
         # workaround for https://issues.jenkins-ci.org/browse/JENKINS-45651
-        add_header 'X-SSH-Endpoint' 'jenkins.aswwu.com:50022' always;
+        add_header 'X-SSH-Endpoint' 'jenkins.aswwu.com:50000';
     }
 }

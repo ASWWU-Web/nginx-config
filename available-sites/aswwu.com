@@ -20,7 +20,7 @@ server {
 	location / {
 		#alias	/var/www/html/aswwu.com/live/;
 		#alias /var/www/html/homepage;
-		root /var/www/html/homepage;
+		root /var/www/html/homepage/live;
 		try_files $uri $uri/ /index.html;
 		#rewrite ^/(.*) /#/$1;
 		#include	php.fast.conf;
@@ -184,8 +184,8 @@ server {
 	}
 
 	location /mask {
-		alias /var/www/html/mask/;
-		try_files $uri $uri/ /mask/index.html;
+ 		alias /var/www/html/mask/;
+	 	try_files $uri $uri/ /mask/index.html;
 	}
 	
 	location /pages {
